@@ -1,0 +1,14 @@
+@model Kursach.Models.User
+@{ ViewData["Title"] = "Personal cabinet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PersonalCabinet</h1>
+
+<p>My companies</p>
+
+<p>Edit profile</p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
