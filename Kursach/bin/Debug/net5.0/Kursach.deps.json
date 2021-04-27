@@ -34,7 +34,7 @@
       "Kursach/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Facebook": "5.0.5",
-          "Microsoft.AspNetCore.Authentication.Twitter": "5.0.5",
+          "Microsoft.AspNetCore.Authentication.MicrosoftAccount": "5.0.5",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.5",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.5",
           "Microsoft.AspNetCore.Identity.UI": "5.0.5",
@@ -345,15 +345,15 @@
           "lib/net5.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authentication.Twitter/5.0.5": {
+      "Microsoft.AspNetCore.Authentication.MicrosoftAccount/5.0.5": {
         "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Authentication.Twitter.dll": {
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {
             "assemblyVersion": "5.0.5.0",
             "fileVersion": "5.0.521.16708"
           }
         },
         "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Authentication.Twitter.dll": {}
+          "lib/net5.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {}
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/5.0.5": {
@@ -3217,12 +3217,12 @@
       "path": "microsoft.aspnetcore.authentication.facebook/5.0.5",
       "hashPath": "microsoft.aspnetcore.authentication.facebook.5.0.5.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Authentication.Twitter/5.0.5": {
+    "Microsoft.AspNetCore.Authentication.MicrosoftAccount/5.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4UQNZIFJgcSXu0zSUY0enUPCa5f0ltA/2hKR4RhIZ6ElPOcCVLmb27JC9id7NosbqQSSC1TxNQqsSxyBnRHTAA==",
-      "path": "microsoft.aspnetcore.authentication.twitter/5.0.5",
-      "hashPath": "microsoft.aspnetcore.authentication.twitter.5.0.5.nupkg.sha512"
+      "sha512": "sha512-Bz1xDozk86FE31s/AEC1YnysnwaNb3Cq+3wBleQOxIONtS6b17Q7zHmr6HUc8EhBWPdaZ972jWfgN6tJHVDZsw==",
+      "path": "microsoft.aspnetcore.authentication.microsoftaccount/5.0.5",
+      "hashPath": "microsoft.aspnetcore.authentication.microsoftaccount.5.0.5.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.5": {
       "type": "package",
