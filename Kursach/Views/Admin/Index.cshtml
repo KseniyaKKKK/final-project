@@ -1,14 +1,12 @@
-﻿
-@model IEnumerable<User>
+﻿@model IEnumerable<User>
 
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+@inject RoleManager<IdentityRole> RoleManager
 
 @if (SignInManager.IsSignedIn(User))
 {
-
-
     <div class="container" id="manager">
 
         <div class="btn-group" role="group" aria-label="Basic example">
@@ -34,19 +32,28 @@
                                 <input type="checkbox" id="select-all" class="CheckboxClass">
                                 <label for="car">Select All</label>
                             </th>
-                            
+
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Role</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var user in Model)
                         {
-                        <tr>
-                            <td><input type="checkbox" class="CheckboxClass" name="chk" value=@user.Id /></td>
-                            <td>@user.Name</td>
-                            <td>@user.Email</td>
-                        </tr>
+                            <tr>
+                                <td><input type="checkbox" class="CheckboxClass" name="chk" value=@user.Id /></td>
+                                <td>@user.Name</td>
+                                <td>@user.Email</td>
+                                <td>@user.Status</td>
+                                <td>
+                                    @foreach (var t in UserManager.GetRolesAsync(user).Result)
+                                    {
+                                        @t<br />
+                                    }
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -81,7 +88,7 @@ else
         }
 
         $.ajax({
-            url: '/Account/Delete',
+            url: '/Admin/Delete',
             data: { "SelectedCheckBox": selectedItems },
             type: "POST",
             success: function (jsReturnArgs) {
@@ -99,7 +106,7 @@ else
         }
 
         $.ajax({
-            url: '/Account/Block',
+            url: '/Admin/Block',
             data: { "SelectedCheckBox": selectedItems },
             type: "POST",
             success: function (jsReturnArgs) {
@@ -117,7 +124,7 @@ else
         }
 
         $.ajax({
-            url: '/Account/Unblock',
+            url: '/Admin/Unblock',
             data: { "SelectedCheckBox": selectedItems },
             type: "POST",
             success: function (jsReturnArgs) {

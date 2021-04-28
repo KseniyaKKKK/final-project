@@ -15,10 +15,11 @@ namespace UserManager.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         public AccountController(UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
-
+            this.roleManager = roleManager;
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
@@ -43,8 +44,11 @@ namespace UserManager.Controllers
                         Name = request.Name,
                         Email = request.Email,
                         UserName = request.Email,
+                        EmailConfirmed = true
                     };
                     var result = await userManager.CreateAsync(user, request.Password);
+                    await userManager.AddToRoleAsync(user, "User");
+                    await userManager.AddToRoleAsync(user, "Admin");
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Login");

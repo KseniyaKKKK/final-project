@@ -12,16 +12,80 @@ namespace Kursach.Controllers
     {
         RoleManager<IdentityRole> roleManager;
         UserManager<User> userManager;
-        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
+        SignInManager<User> signInManager;
+
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
         {
-            var users = userManager.Users;
-            return View(users);
+            return View(userManager.Users);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string SelectedCheckbox)
+        {
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var currentId = userManager.GetUserId(currentUser);
+            var SplitedValues = SelectedCheckbox.ToString().Split(',');
+            foreach (string id in SplitedValues)
+            {
+                User user = await userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    await userManager.DeleteAsync(user);
+                    if (currentId == id)
+                    {
+                        await signInManager.SignOutAsync();
+                    }
+                }
+            }
+
+            return RedirectToAction("index", "Admin", userManager.Users);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Block(string SelectedCheckbox)
+        {
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var currentId = userManager.GetUserId(currentUser);
+            var SplitedValues = SelectedCheckbox.ToString().Split(',');
+            foreach (string id in SplitedValues)
+            {
+                User user = await userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    user.Status = StatusType.Blocked;
+                    await userManager.UpdateAsync(user);
+                    if (currentId == id)
+                    {
+                        await signInManager.SignOutAsync();
+                    }
+                }
+            }
+
+            return RedirectToAction("index", "Admin", userManager.Users);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Unblock(string SelectedCheckbox)
+        {
+            var SplitedValues = SelectedCheckbox.ToString().Split(',');
+            foreach (string id in SplitedValues)
+            {
+                User user = await userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    user.Status = StatusType.Unblocked;
+                    await userManager.UpdateAsync(user);
+                }
+            }
+
+            return RedirectToAction("index", "Admin", userManager.Users);
         }
 
         //public IActionResult Create() => View();
