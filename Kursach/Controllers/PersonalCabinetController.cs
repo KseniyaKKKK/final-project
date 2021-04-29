@@ -1,12 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kursach.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Kursach.Controllers
 {
-    public class PersonalCabinet : Controller
+    public class PersonalCabinetController : Controller
     {
-        public IActionResult Index()
+        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        public PersonalCabinetController(UserManager<User> userManager,
+            SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
-            return View();
+            this.roleManager = roleManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
+
+        public IActionResult Index(string id)
+        {
+            User t = userManager.FindByIdAsync(id).Result;
+            return View(t);
         }
     }
 }

@@ -5,15 +5,15 @@
         <State name="__root__">
           <Node name="Kursach" expanded="True">
             <Node name="Kursach" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="AccountController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Admin" expanded="True" />
                 <Node name="PersonalCabinet" expanded="True" />
-                <Node name="Shared" expanded="True" />
+                <Node name="Shared" expanded="True">
+                  <Node name="_LoginPartial.cshtml" selected="True" />
+                </Node>
               </Node>
               <Node name="appsettings.json" expanded="True" />
             </Node>
@@ -26,9 +26,7 @@
   <MonoDevelop.Ide.ItemProperties.Kursach PreferredExecutionTarget="/Applications/Opera.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/felicity/Desktop/Kursach/Kursach/Controllers/AccountController.cs" relfile="Kursach/Controllers/AccountController.cs" line="89" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

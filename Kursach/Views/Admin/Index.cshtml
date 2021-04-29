@@ -20,6 +20,12 @@
                 <button type="button" class="btn btn-sm btn-danger" onclick='unblockChecked()'>
                     Unblock
                 </button>
+                <button type="button" class="btn btn-sm btn-danger" onclick='addToAdminChecked()'>
+                    Add to admin
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" onclick='removeFromAdminChecked()'>
+                    Remove from admin
+                </button>
             </form>
         </div>
 
@@ -37,6 +43,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Status</th>
                             <th scope="col">Role</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +60,7 @@
                                         @t<br />
                                     }
                                 </td>
+                                <td><a asp-controller="PersonalCabinet" asp-action="Index" asp-route-id=@user.Id>Personal cabinet</a></td>
                             </tr>
                         }
                     </tbody>
@@ -131,7 +139,44 @@ else
                 $("#manager").html(jsReturnArgs);
             }
         })
-    }</script>
+    }
+
+    function addToAdminChecked() {
+        var items = document.getElementsByName('chk');
+        var selectedItems = "";
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox' && items[i].checked == true)
+                selectedItems += items[i].value + ",";
+        }
+
+        $.ajax({
+            url: '/Admin/AddToAdmin',
+            data: { "SelectedCheckBox": selectedItems },
+            type: "POST",
+            success: function (jsReturnArgs) {
+                $("#manager").html(jsReturnArgs);
+            }
+        })
+    }
+
+    function removeFromAdminChecked() {
+        var items = document.getElementsByName('chk');
+        var selectedItems = "";
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox' && items[i].checked == true)
+                selectedItems += items[i].value + ",";
+        }
+
+        $.ajax({
+            url: '/Admin/RemoveFromAdmin',
+            data: { "SelectedCheckBox": selectedItems },
+            type: "POST",
+            success: function (jsReturnArgs) {
+                $("#manager").html(jsReturnArgs);
+            }
+        })
+    }
+</script>
 
 
 
