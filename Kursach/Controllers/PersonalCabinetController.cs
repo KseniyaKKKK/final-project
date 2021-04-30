@@ -17,10 +17,17 @@ namespace Kursach.Controllers
             this.signInManager = signInManager;
         }
 
-        public IActionResult Index(string id)
+        public IActionResult Index(string id = null)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                //id = User.Identity.GetUserId();
+            }
+
             User t = userManager.FindByIdAsync(id).Result;
             return View(t);
         }
+
+
     }
 }

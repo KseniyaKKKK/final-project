@@ -1,7 +1,6 @@
+
 @model Kursach.Models.User
-@{
-    ViewData["Title"] = "Personal cabinet";
-}
+
 
 <h1>PersonalCabinet</h1>
 
@@ -11,3 +10,4 @@
 
 <p>Your name @Model.Name</p>
 
+@await Html.PartialAsync("_CampaignsTable")

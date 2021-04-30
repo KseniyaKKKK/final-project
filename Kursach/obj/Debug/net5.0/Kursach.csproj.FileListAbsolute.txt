@@ -159,3 +159,4 @@
 /Users/felicity/Desktop/Kursach/Kursach/bin/Debug/net5.0/runtimes/linux-mips64/native/libe_sqlite3.so
 /Users/felicity/Desktop/Kursach/Kursach/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
 /Users/felicity/Desktop/Kursach/Kursach/obj/Debug/net5.0/Razor/Views/Admin/Index.cshtml.g.cs
+/Users/felicity/Desktop/Kursach/Kursach/obj/Debug/net5.0/Razor/Views/PersonalCabinet/_CampaignsTable.cshtml.g.cs

@@ -48,7 +48,6 @@ namespace UserManager.Controllers
                     };
                     var result = await userManager.CreateAsync(user, request.Password);
                     await userManager.AddToRoleAsync(user, "User");
-                    await userManager.AddToRoleAsync(user, "Admin");
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Login");
@@ -103,7 +102,7 @@ namespace UserManager.Controllers
                 if (result.Succeeded)
                 {
                     await userManager.AddClaimAsync(user, new Claim("UserRole", "Admin"));
-                    return RedirectToAction("Index", "PersonalCabinet");
+                    return RedirectToAction("Index", "PersonalCabinet", new {id = user.Id });
                 }
                 else if (result.IsLockedOut)
                 {
@@ -144,7 +143,9 @@ namespace UserManager.Controllers
                 isPersistent: false, bypassTwoFactor: false);
             if (signInResul.Result.Succeeded)
             {
-                return RedirectToAction("Index", "PersonalCabinet");
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                var user = await userManager.FindByEmailAsync(email);
+                return RedirectToAction("Index", "PersonalCabinet", new { id = user.Id});
             }
             else
             {
@@ -163,12 +164,13 @@ namespace UserManager.Controllers
                         };
 
                         await userManager.CreateAsync(user);
+                        await userManager.AddToRoleAsync(user, "User");
                     }
 
                     await userManager.AddLoginAsync(user, info);
                     await signInManager.SignInAsync(user, isPersistent: false);
 
-                    return RedirectToAction("Index", "PersonalCabinet", user);
+                    return RedirectToAction("Index", "PersonalCabinet", new { id = user.Id });
                 }
             }
 
