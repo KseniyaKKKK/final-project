@@ -32,8 +32,6 @@ namespace Kursach
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<CampaignDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()

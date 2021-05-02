@@ -14,5 +14,7 @@ namespace Kursach.Data
             : base(options)
         {
         }
+
+        DbSet<Campaign> Campaigns { get; set; }
     }
 }
