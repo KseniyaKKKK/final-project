@@ -1,1 +1,18 @@
-﻿<p>Partitial view mine</p>
+﻿@model Kursach.Models.User
+@using Kursach.Controllers
+
+<div>
+    <h6>Your campaigns</h6>
+    <table>
+        <tr>
+            <th>Name</th>
+        </tr>
+        @foreach (var t in PersonalCabinetController.context.Campaigns)
+        {
+            <tr>
+                <th>@t.Name</th>
+            </tr>
+        }
+    </table>
+</div>
+<tr>

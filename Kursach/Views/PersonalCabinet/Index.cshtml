@@ -1,13 +1,12 @@
-
 @model Kursach.Models.User
 
 
 <h1>PersonalCabinet</h1>
 
-<p>My companies</p>
-
 <p>Edit profile</p>
 
 <p>Your name @Model.Name</p>
 
-@await Html.PartialAsync("_CampaignsTable")
+<p><a asp-controller="Campaign" asp-action="Create">Create campaign</a></p>
+
+@await Html.PartialAsync("_CampaignsTable", Model)

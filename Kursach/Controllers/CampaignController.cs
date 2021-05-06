@@ -1,17 +1,18 @@
-﻿using Kursach.Data;
+﻿using System.Threading.Tasks;
+using Kursach.Data;
 using Kursach.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kursach.Controllers
 {
-    public class PersonalCabinetController : Controller
+    public class CampaignController : Controller
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
         public static ApplicationDbContext context;
-        public PersonalCabinetController(ApplicationDbContext _context, UserManager<User> userManager,
+        public CampaignController(ApplicationDbContext _context, UserManager<User> userManager,
             SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
             context = _context;
@@ -20,12 +21,17 @@ namespace Kursach.Controllers
             this.signInManager = signInManager;
         }
 
-        public IActionResult Index(string id)
+        [HttpGet]
+        public IActionResult Create()
         {
-            User t = userManager.FindByIdAsync(id).Result;
-            return View(t);
+            Campaign model = new Campaign();
+            return View(model);
         }
 
-
+        [HttpPost]
+        public async Task<IActionResult> Create(Campaign request)
+        {
+            return RedirectToAction("Index", "PersonalCabinet", userManager.FindByNameAsync(User.Identity.Name).Result);
+        }
     }
 }

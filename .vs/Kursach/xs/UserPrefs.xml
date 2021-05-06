@@ -10,8 +10,9 @@
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Account" expanded="True" />
+                <Node name="Campaign" expanded="True" />
                 <Node name="PersonalCabinet" expanded="True">
-                  <Node name="_CampaignsTable.cshtml" selected="True" />
+                  <Node name="Index.cshtml" selected="True" />
                 </Node>
                 <Node name="Shared" expanded="True" />
               </Node>
