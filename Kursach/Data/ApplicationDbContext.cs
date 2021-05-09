@@ -16,5 +16,6 @@ namespace Kursach.Data
         }
 
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

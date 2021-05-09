@@ -19,6 +19,7 @@ namespace Kursach.Data.Migrations
             modelBuilder.Entity("Kursach.Models.Campaign", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -35,6 +36,25 @@ namespace Kursach.Data.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Campaigns");
+                });
+
+            modelBuilder.Entity("Kursach.Models.Post", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CampaignId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("Kursach.Models.User", b =>
@@ -248,6 +268,15 @@ namespace Kursach.Data.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("Kursach.Models.Post", b =>
+                {
+                    b.HasOne("Kursach.Models.Campaign", "Campaign")
+                        .WithMany("Posts")
+                        .HasForeignKey("CampaignId");
+
+                    b.Navigation("Campaign");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -297,6 +326,11 @@ namespace Kursach.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Kursach.Models.Campaign", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

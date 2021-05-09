@@ -161,3 +161,5 @@
 /Users/felicity/Desktop/Kursach/Kursach/obj/Debug/net5.0/Razor/Views/Admin/Index.cshtml.g.cs
 /Users/felicity/Desktop/Kursach/Kursach/obj/Debug/net5.0/Razor/Views/PersonalCabinet/_CampaignsTable.cshtml.g.cs
 /Users/felicity/Desktop/Kursach/Kursach/obj/Debug/net5.0/Razor/Views/Campaign/Create.cshtml.g.cs
+/Users/felicity/Desktop/Kursach/Kursach/obj/Debug/net5.0/Razor/Views/Campaign/CampaignSite.cshtml.g.cs
+/Users/felicity/Desktop/Kursach/Kursach/obj/Debug/net5.0/Razor/Views/Campaign/AddPost.cshtml.g.cs

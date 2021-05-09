@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<User>
-
+@{ ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
@@ -113,14 +115,16 @@ else
                 selectedItems += items[i].value + ",";
         }
 
-        $.ajax({
+    window.location.href = '@Url.Action("Block", "Admin")/' + selectedItems;
+
+        @*$.ajax({
             url: '/Admin/Block',
             data: { "SelectedCheckBox": selectedItems },
             type: "POST",
             success: function (jsReturnArgs) {
-                $("#manager").html(jsReturnArgs);
+                $("#container").html(jsReturnArgs);
             }
-        })
+        })*@
     }
 
     function unblockChecked() {
@@ -130,6 +134,8 @@ else
             if (items[i].type == 'checkbox' && items[i].checked == true)
                 selectedItems += items[i].value + ",";
         }
+
+
 
         $.ajax({
             url: '/Admin/Unblock',
@@ -175,8 +181,7 @@ else
                 $("#manager").html(jsReturnArgs);
             }
         })
-    }
-</script>
+    }</script>
 
 
 

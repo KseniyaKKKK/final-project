@@ -1,0 +1,17 @@
+﻿@model Kursach.Models.Campaign
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Kursach.Controllers
+
+<p>Site of @Model.Name</p>
+
+<p><a asp-controller="Campaign" asp-action="AddPost" asp-route-id=@Model.Id>New post</a></p>
+
+@foreach (var t in CampaignController.context.Posts.Where(u => u.CampaignId == Model.Id).ToList())
+{
+    <div class="post">
+        <h6>@t.Campaign.Name</h6>
+        <p>@t.Content</p>
+    </div>
+}

@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Kursach.Models;
+using Kursach.Data;
 
 namespace Kursach.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        public static ApplicationDbContext context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext _context)
         {
-            _logger = logger;
+            context = _context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(context);
         }
 
         public IActionResult Privacy()

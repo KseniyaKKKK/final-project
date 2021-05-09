@@ -1,3 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model ApplicationDbContext
+@using Kursach.Data
+<head>
+    <style>
+        .post {
+            display: block;
+            border: solid thin;
+            margin: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    @foreach (var t in Model.Posts.ToList())
+    {
+        <div class="post">
+            <h6>@t.Campaign.Name</h6>
+            <p>@t.Content</p>
+        </div>
+    }
+</body>

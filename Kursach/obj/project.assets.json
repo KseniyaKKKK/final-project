@@ -4872,7 +4872,7 @@
       "outputPath": "/Users/felicity/Desktop/Kursach/Kursach/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/felicity/.config/NuGet/NuGet.Config"
+        "/Users/felicity/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

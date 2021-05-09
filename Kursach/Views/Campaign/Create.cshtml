@@ -16,6 +16,16 @@
                 @Html.TextBoxFor(m => m.Name, new { placeholder = "Name", @class = "form-control" })
             </div>
         </div>
+
+        <div class="form-group col-sm-12">
+            <label asp-for="@Model.WantedMoney" class="col-lg-3 control-label"></label>
+            <br>
+            <div class="col-lg-9">
+                @Html.TextBoxFor(m => m.WantedMoney, new { placeholder = "Wanted money", @class = "form-control" })
+            </div>
+        </div>
+
+        
     </div>
 
     <div class="form-group">

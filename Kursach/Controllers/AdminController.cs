@@ -52,7 +52,7 @@ namespace Kursach.Controllers
             return RedirectToAction("index", "Admin", userManager.Users);
         }
 
-        [HttpPost]
+        [HttpPost("{SelectedChecknox}", Name = "Block")]
         public async Task<IActionResult> Block(string SelectedCheckbox)
         {
             System.Security.Claims.ClaimsPrincipal currentUser = this.User;

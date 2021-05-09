@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kursach.Models
 {
-    public class Campaign
+    public class Post
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
-        public string Name { get; set; }
-        public User Owner { get; set; }
-        public int WantedMoney { get; set; }
-        public List<Post> Posts { get; } = new List<Post>();
+        public string CampaignId { get; set; }
+        public Campaign Campaign { get; set; }
+        public string Content { get; set; }
     }
 }

@@ -6,17 +6,58 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Kursach.Data.Migrations
+namespace Kursach.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210427201738_users2")]
-    partial class users2
+    [Migration("20210509102307_posts")]
+    partial class posts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.5");
+
+            modelBuilder.Entity("Kursach.Models.Campaign", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WantedMoney")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Campaigns");
+                });
+
+            modelBuilder.Entity("Kursach.Models.Post", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CampaignId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.ToTable("Posts");
+                });
 
             modelBuilder.Entity("Kursach.Models.User", b =>
                 {
@@ -220,6 +261,24 @@ namespace Kursach.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Kursach.Models.Campaign", b =>
+                {
+                    b.HasOne("Kursach.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("Kursach.Models.Post", b =>
+                {
+                    b.HasOne("Kursach.Models.Campaign", "Campaign")
+                        .WithMany("Posts")
+                        .HasForeignKey("CampaignId");
+
+                    b.Navigation("Campaign");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -269,6 +328,11 @@ namespace Kursach.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Kursach.Models.Campaign", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
