@@ -1,21 +1,25 @@
-﻿@model ApplicationDbContext
-@using Kursach.Data
-<head>
+﻿<head>
     <style>
         .post {
             display: block;
             border: solid thin;
-            margin: 1%;
+            margin-top: 1%;
+            padding-left: 2%;
+            padding-top: 2%;
+            border-radius: 1em;
         }
     </style>
 </head>
 
-<body>
-    @foreach (var t in Model.Posts.ToList())
-    {
-        <div class="post">
-            <h6>@t.Campaign.Name</h6>
-            <p>@t.Content</p>
-        </div>
-    }
-</body>
+@model List<Tuple<string, string>>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var t in Model)
+{
+    <div class="post">
+        <h5>@t.Item1</h5>
+        <p>@t.Item2</p>
+    </div>
+}

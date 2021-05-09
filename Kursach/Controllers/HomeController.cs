@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Kursach.Models;
 using Kursach.Data;
+using Kursach.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Kursach.Controllers
 {
@@ -21,7 +21,8 @@ namespace Kursach.Controllers
 
         public IActionResult Index()
         {
-            return View(context);
+            var model = context.Posts.Select(x => new Tuple<string, string>(x.Campaign.Name, x.Content)).ToList();
+            return View(model);
         }
 
         public IActionResult Privacy()
