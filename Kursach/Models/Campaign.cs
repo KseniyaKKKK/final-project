@@ -13,6 +13,7 @@ namespace Kursach.Models
         public string Name { get; set; }
         public User Owner { get; set; }
         public int WantedMoney { get; set; }
-        public List<Post> Posts { get; } = new List<Post>();
+        public int CollectedMoney { get; set; } = 0;
+        public string Deskription { get; set; }
     }
 }

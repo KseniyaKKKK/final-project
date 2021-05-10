@@ -22,6 +22,12 @@ namespace Kursach.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("CollectedMoney")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Deskription")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -48,6 +54,9 @@ namespace Kursach.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Time")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -271,7 +280,7 @@ namespace Kursach.Data.Migrations
             modelBuilder.Entity("Kursach.Models.Post", b =>
                 {
                     b.HasOne("Kursach.Models.Campaign", "Campaign")
-                        .WithMany("Posts")
+                        .WithMany()
                         .HasForeignKey("CampaignId");
 
                     b.Navigation("Campaign");
@@ -326,11 +335,6 @@ namespace Kursach.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Kursach.Models.Campaign", b =>
-                {
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

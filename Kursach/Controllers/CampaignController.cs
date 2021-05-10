@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Kursach.Data;
 using Kursach.Models;
@@ -55,6 +56,7 @@ namespace Kursach.Controllers
             var currentUser = userManager.FindByNameAsync(User.Identity.Name).Result;
             request.CampaignId = request.Id;
             request.Id = null;
+            request.Time = DateTime.Now;
             request.Campaign = await context.Campaigns.FindAsync(request.CampaignId);
             context.Posts.Add(request);
             await context.SaveChangesAsync();

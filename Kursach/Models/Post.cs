@@ -12,5 +12,6 @@ namespace Kursach.Models
         public string CampaignId { get; set; }
         public Campaign Campaign { get; set; }
         public string Content { get; set; }
+        public DateTime Time { get; set; }
     }
 }

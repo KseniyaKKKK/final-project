@@ -21,7 +21,7 @@
 
 <p><a asp-controller="Campaign" asp-action="AddPost" asp-route-id=@Model.Id>New post</a></p>
 
-@foreach (var t in CampaignController.context.Posts.Where(u => u.CampaignId == Model.Id).ToList())
+@foreach (var t in CampaignController.context.Posts.OrderByDescending(x => x.Time).Where(u => u.CampaignId == Model.Id).ToList())
 {
     <div class="post">
         <h5>@t.Campaign.Name</h5>

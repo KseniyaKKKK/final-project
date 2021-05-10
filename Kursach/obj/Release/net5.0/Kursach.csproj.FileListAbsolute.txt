@@ -158,3 +158,8 @@
 /Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Kursach.pdb
 /Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Kursach.genruntimeconfig.cache
 /Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Kursach.csprojAssemblyReference.cache
+/Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Razor/Views/Admin/Index.cshtml.g.cs
+/Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Razor/Views/Campaign/AddPost.cshtml.g.cs
+/Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Razor/Views/Campaign/CampaignSite.cshtml.g.cs
+/Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Razor/Views/Campaign/Create.cshtml.g.cs
+/Users/felicity/Desktop/Kursach/Kursach/obj/Release/net5.0/Razor/Views/PersonalCabinet/_CampaignsTable.cshtml.g.cs
