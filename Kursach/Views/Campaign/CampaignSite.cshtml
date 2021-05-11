@@ -1,8 +1,8 @@
 ﻿@model Kursach.Models.Campaign
 @using Kursach.Controllers
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 <head>
     <style>
@@ -17,14 +17,26 @@
     </style>
 </head>
 
-<p>Site of @Model.Name</p>
-
-<p><a asp-controller="Campaign" asp-action="AddPost" asp-route-id=@Model.Id>New post</a></p>
-
-@foreach (var t in CampaignController.context.Posts.OrderByDescending(x => x.Time).Where(u => u.CampaignId == Model.Id).ToList())
-{
-    <div class="post">
-        <h5>@t.Campaign.Name</h5>
-        <p>@t.Content</p>
+<body>
+    <h3>Site of @Model.Name</h3>
+    <div>
+        <h4>Funded money</h4>
+        <p>@Model.CollectedMoney / @Model.WantedMoney</p>
     </div>
-}
+
+    <div>
+        <h4>Posts</h4>
+        @if (UserManager.GetUserId(HttpContextAccessor.HttpContext.User) == Model.Owner.Id)
+        {
+            <p><a asp-controller="Campaign" asp-action="AddPost" asp-route-id=@Model.Id>New post</a></p>
+        }
+
+        @foreach (var t in CampaignController.context.Posts.OrderByDescending(x => x.Time).Where(u => u.CampaignId == Model.Id).ToList())
+        {
+            <div class="post">
+                <h5>@t.Campaign.Name</h5>
+                <p>@t.Content</p>
+            </div>
+        }
+    </div>
+</body>

@@ -21,7 +21,7 @@ namespace Kursach.Controllers
 
         public IActionResult Index()
         {
-            var model = context.Posts.OrderByDescending(x => x.Time).Select(x => new Tuple<string, string>(x.Campaign.Name, x.Content)).ToList();
+            var model = context.Posts.Include(p => p.Campaign).OrderByDescending(x => x.Time).ToList();
             return View(model);
         }
 

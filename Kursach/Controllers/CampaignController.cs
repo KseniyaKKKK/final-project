@@ -38,7 +38,7 @@ namespace Kursach.Controllers
 
         public async Task<IActionResult> CampaignSite(string id)
         {
-            var campaign = await context.Campaigns.FindAsync(id);
+            var campaign = await context.Campaigns.Include(p => p.Owner).FirstOrDefaultAsync(p => p.Id == id);
             return View(campaign);
         }
 

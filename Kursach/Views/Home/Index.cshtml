@@ -1,4 +1,9 @@
-﻿<head>
+﻿@model List<Post>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
     <style>
         .post {
             display: block;
@@ -11,15 +16,12 @@
     </style>
 </head>
 
-@model List<Tuple<string, string>>
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@foreach (var t in Model)
-{
-    <div class="post">
-        <h5>@t.Item1</h5>
-        <p>@t.Item2</p>
-    </div>
-}
+<body>
+    @foreach (var t in Model)
+    {
+        <div class="post">
+            <h5><a asp-controller="Campaign" asp-action="CampaignSite" asp-route-id=@t.CampaignId>@t.Campaign.Name</a></h5>
+            <p>@t.Content</p>
+        </div>
+    }
+</body>
